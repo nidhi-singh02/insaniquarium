@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Insaniquarium</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E🐠%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-icon">🐠</span>
+        <h1>Insaniquarium</h1>
+      </div>
+      <div class="hud">
+        <div class="stat"><span class="stat-label">Coins</span><span id="coinCount" class="stat-value coin">0</span></div>
+        <div class="stat"><span class="stat-label">Pellets</span><span id="pelletCount" class="stat-value">25</span></div>
+        <div class="stat"><span class="stat-label">Time</span><span id="timeLeft" class="stat-value">5:00</span></div>
+        <div class="stat"><span class="stat-label">Fish</span><span id="fishCount" class="stat-value">2</span></div>
+      </div>
+      <div class="actions">
+        <button id="buyFishBtn" class="btn btn-fish" title="Buy a hatchling (20 coins)">Buy Fish <span class="cost">20</span></button>
+        <button id="buyFoodBtn" class="btn btn-food" title="Buy a bag of 25 pellets (25 coins)">Buy Bag <span class="cost">25</span></button>
+        <button id="muteBtn" class="btn btn-icon" title="Toggle sound">🔊</button>
+        <button id="stopBtn" class="btn btn-danger" title="Stop the game">Stop</button>
+      </div>
+    </header>
+
+    <main class="stage">
+      <canvas id="tank" width="960" height="600"></canvas>
+      <div id="toast" class="toast" role="status"></div>
+
+      <div id="startScreen" class="overlay">
+        <div class="panel">
+          <div class="logo">🐟</div>
+          <h2>Insaniquarium</h2>
+          <p class="tagline">Keep the tank alive. Collect coins. Survive the aliens.</p>
+          <ul class="howto">
+            <li><b>Click</b> anywhere in the tank to drop food — the nearest fish eats it.</li>
+            <li><b>Click coins</b> to collect them. Coins sink to the bottom and disappear.</li>
+            <li><b>Click aliens</b> repeatedly to smash them before they eat a fish.</li>
+            <li>Hatchlings grow into juveniles, then adults. 5 minutes per run — score = coins collected.</li>
+          </ul>
+          <button id="playBtn" class="btn btn-primary btn-big">▶ Play</button>
+        </div>
+      </div>
+
+      <div id="overScreen" class="overlay hidden">
+        <div class="panel">
+          <h2 id="overTitle">Game over</h2>
+          <div class="score-wrap">
+            <div class="score-label">Coins collected</div>
+            <div id="overScore" class="score-value">0</div>
+          </div>
+          <p id="overDetail" class="over-detail"></p>
+          <ol id="bestList" class="best"></ol>
+          <div class="row">
+            <button id="againBtn" class="btn btn-primary">↻ Play again</button>
+            <button id="menuBtn" class="btn">Menu</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="hint">
+      <span id="hint">Click the tank to feed · Click coins to collect · Click aliens to smash them · <kbd>Space</kbd> stop · <kbd>F</kbd> food · <kbd>N</kbd> fish</span>
+    </footer>
+  </div>
+  <script src="js/core.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
